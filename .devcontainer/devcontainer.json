@@ -1,0 +1,57 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.202.1/containers/typescript-node
+{
+  "name": "UPLAX-PDF-SVC [Node.js & TypeScript]",
+
+  // Update the 'dockerComposeFile' list if you have more compose files or use different names.
+  "dockerComposeFile": "../../../compose.yml",
+
+  "runServices": [],
+
+  "shutdownAction": "none",
+
+  // The 'service' property is the name of the service for the container that VS Code should
+  // use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+  "service": "uplax-pdf-svc",
+
+  // The optional 'workspaceFolder' property is the path VS Code should open by default when
+  // connected. This is typically a volume mount in .devcontainer/docker-compose.yml
+  "workspaceFolder": "/workspace/packages/uplax-pdf-svc",
+
+  // Add the IDs of extensions you want installed when the container is created.
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "remote.autoForwardPorts": false,
+        "cssVariables.lookupFiles": [
+          "**/*.css",
+          "**/*.scss",
+          "**/*.sass",
+          "**/*.less",
+          "node_modules/@mantine/core/styles.css"
+        ]
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "stylelint.vscode-stylelint",
+        "mutantdino.resourcemonitor",
+        "wmaurer.change-case",
+        "extension.prettifyJSON",
+        "yoavbls.pretty-ts-errors",
+        "esbenp.prettier-vscode",
+        "vunguyentuan.vscode-css-variables",
+        "vunguyentuan.vscode-postcss",
+        "saoudrizwan.claude-dev"
+      ]
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "sudo chown node node_modules",
+
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "node"
+}
