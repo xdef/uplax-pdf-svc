@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import cx from "clsx";
 import { INoteSummarization } from "@/types";
@@ -156,7 +158,7 @@ const Summarization: React.FC<Props> = ({ summarization, className }) => {
             {actions.map((a, idx) => (
               <List.Item key={idx}>
                 <Stack gap={0}>
-                  <Text fw={500}>{a.title}</Text>
+                  <Text fw={600}>{a.title}</Text>
                   <Text>{a.details}</Text>
                 </Stack>
               </List.Item>
