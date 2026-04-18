@@ -1,25 +1,52 @@
 {
-  "name": "uplax-pdf-svc",
-  "version": "0.1.0",
+  "name": "uplax-pdv-svc",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "check-types": "tsc --noEmit",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "release": "release-it"
+  },
+  "release-it": {
+    "git": false
   },
   "dependencies": {
-    "next": "16.2.4",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "@mantine/core": "9.0.2",
+    "@mantine/hooks": "9.0.2",
+    "@t3-oss/env-nextjs": "^0.13.10",
+    "@tabler/icons-react": "^3.36.0",
+    "color-hash": "^2.0.2",
+    "dayjs": "^1.11.19",
+    "lodash": "^4.17.21",
+    "next": "^16.1.1",
+    "puppeteer": "^24.33.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.4",
-    "typescript": "^5"
+    "@eslint/js": "^10.0.1",
+    "@types/color-hash": "^2.0.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.5.0",
+    "jiti": "^2.6.1",
+    "postcss": "^8.5.6",
+    "postcss-load-config": "^6.0.1",
+    "postcss-preset-mantine": "^1.18.0",
+    "postcss-simple-vars": "^7.0.1",
+    "prettier": "^3.8.2",
+    "typescript": "6.0.3",
+    "typescript-eslint": "^8.58.2"
   }
 }
