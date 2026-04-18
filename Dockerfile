@@ -25,6 +25,11 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+ARG BROWSER_ENDPOINT
+ARG REPORTS_ENDPOINT
+ENV BROWSER_ENDPOINT=$BROWSER_ENDPOINT
+ENV REPORTS_ENDPOINT=$REPORTS_ENDPOINT
+
 # Build Next.js app
 RUN yarn build
 
