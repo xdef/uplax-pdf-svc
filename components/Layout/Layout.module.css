@@ -1,0 +1,12 @@
+.root {
+  width: 210mm;
+  padding: var(--page-offset);
+  margin: auto;
+  counter-reset: page;
+  background-color: var(--mantine-color-white);
+  box-sizing: border-box;
+
+  @media print {
+    padding: 0;
+  }
+}

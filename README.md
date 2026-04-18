@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PDF-сервис отчетов
 
-## Getting Started
+Сервис предназначен для подготовки и генерации PDF-отчетов по различным событиям и данным.
+На данный момент реализована генерация первого типа отчета — **сводка о прошедшей конференции**.
 
-First, run the development server:
+## Как работает сервис
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. **Получение и валидация запроса:**
+   Клиент отправляет POST-запрос на эндпоинт `/api/notes` с JSON-объектом конференции, который обязательно должен содержать уникальный идентификатор (`id`). Сервис валидирует структуру данных.
+
+2. **Сохранение данных конференции:**
+   Полученные данные сохраняются в виде отдельного JSON-файла во временном файловом хранилище (`/tmp/note-{id}.json`). Это обеспечивает изоляцию и возможность последующего доступа к данным по id.
+
+3. **Формирование URL для рендеринга отчёта:**
+   На основе id формируется URL страницы отчёта (`/notes/{id}`), который будет использоваться для генерации PDF.
+
+4. **Подключение к внешнему браузеру и рендеринг страницы:**
+   Сервис подключается к внешнему экземпляру браузера (через Puppeteer), открывает страницу отчёта, устанавливает параметры печати (A4, без полей, с фоном), дожидается полной загрузки и готовности шрифтов.
+
+5. **Генерация PDF-документа:**
+   После полной загрузки страницы сервис инициирует процесс печати в PDF, формируя итоговый файл с нужными параметрами.
+
+6. **Возврат PDF-файла клиенту:**
+   Сформированный PDF возвращается клиенту с корректными заголовками для скачивания. В случае ошибки возвращается сообщение об ошибке и статус 500.
+
+## Архитектурная схема
+
+```mermaid
+sequenceDiagram
+    participant Client as Клиент
+    participant API as API /api/notes
+    participant Storage as Файловое хранилище (/tmp)
+    participant Browser as Внешний браузер (Puppeteer)
+    participant Reports as Страница отчёта
+
+    Client->>API: POST /api/notes (JSON с конференцией)
+    API->>API: Валидация и разбор данных, проверка id
+    API->>Storage: Сохраняет note-{id}.json
+    API->>Reports: Формирует URL /notes/{id}
+    API->>Browser: Открывает страницу отчёта
+    Browser->>Reports: Загружает страницу /notes/{id}
+    Browser->>API: Возвращает PDF-файл
+    API->>Client: Отправляет PDF в ответе
+    API-->>Client: В случае ошибки — сообщение и статус 500
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Пример запроса
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```http
+POST /api/report
+Content-Type: application/json
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+{
+  "title": "Название конференции",
+  "date": "2025-12-01",
+  "participants": [...],
+  "summary": "Краткое описание",
+  ...
+}
+```
 
-## Learn More
+## Запуск в режиме разработки
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Откройте [http://localhost:3000](http://localhost:3000) для проверки работы сервиса.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
