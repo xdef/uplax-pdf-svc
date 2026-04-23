@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
     return new Response(markdown, {
       headers: {
-        "Content-Type": "text/markdown; charset=utf-8",
+        "Content-Type": "text/plain; charset=utf-8",
         "Content-Disposition": `attachment; filename="${fileName}"`,
       },
     });
