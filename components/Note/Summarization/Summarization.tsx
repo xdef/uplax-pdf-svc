@@ -32,12 +32,16 @@ const Summarization: React.FC<Props> = ({ summarization, className }) => {
       <Stack gap="sm">
         <Group gap="xs">
           <IconFileTextSpark
-            stroke={1}
             size={24}
             color="var(--mantine-color-gray-9)"
           />
 
-          <Text size="xl">Резюме</Text>
+          <Text
+            size="xl"
+            fw={600}
+          >
+            Резюме
+          </Text>
         </Group>
 
         <Text>{details}</Text>
@@ -46,12 +50,16 @@ const Summarization: React.FC<Props> = ({ summarization, className }) => {
       <Stack gap="sm">
         <Group gap="xs">
           <IconUsers
-            stroke={1}
             size={24}
             color="var(--mantine-color-gray-9)"
           />
 
-          <Text size="xl">Участники</Text>
+          <Text
+            size="xl"
+            fw={600}
+          >
+            Участники
+          </Text>
         </Group>
 
         <Stack>
@@ -110,12 +118,16 @@ const Summarization: React.FC<Props> = ({ summarization, className }) => {
       <Stack gap="sm">
         <Group gap="xs">
           <IconBookmarks
-            stroke={1}
             size={24}
             color="var(--mantine-color-gray-9)"
           />
 
-          <Text size="xl">Темы обсуждения</Text>
+          <Text
+            size="xl"
+            fw={600}
+          >
+            Темы обсуждения
+          </Text>
         </Group>
 
         <Stack>
@@ -133,7 +145,7 @@ const Summarization: React.FC<Props> = ({ summarization, className }) => {
                   [{humanTimestamp(topic.timestamp).join(" - ")}]
                 </Anchor>
 
-                <Text fw={500}>{topic.title}</Text>
+                <Text fw={600}>{topic.title}</Text>
               </Group>
 
               <Text>{topic.details}</Text>
@@ -146,12 +158,16 @@ const Summarization: React.FC<Props> = ({ summarization, className }) => {
         <Stack>
           <Group gap="xs">
             <IconListDetails
-              stroke={1}
               size={24}
               color="var(--mantine-color-gray-9)"
             />
 
-            <Text size="xl">Задачи</Text>
+            <Text
+              size="xl"
+              fw={600}
+            >
+              Задачи
+            </Text>
           </Group>
 
           <List type="ordered">
