@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
   },
-  allowedDevOrigins: ["pdf.uplax-dev.localhost"],
+  allowedDevOrigins: ["pdf.uplax-dev.localhost", "uplax-pdf-svc"],
 };
 
 export default nextConfig;
