@@ -7,6 +7,7 @@ import { Stack } from "@mantine/core";
 import Header from "./Header";
 import Summarization from "./Summarization";
 import Transcription from "./Transcription";
+import RefinedText from "./RefinedText";
 
 type Props = React.PropsWithChildren<{
   readonly className?: string | undefined;
@@ -31,15 +32,9 @@ const Note: React.FC<Props> = ({ note, className }) => {
     >
       <Header note={note} />
 
-      <Summarization
-        className={classes.sideLeft}
-        summarization={summarization}
-      />
-
-      <Transcription
-        className={classes.sideRight}
-        transcription={transcription}
-      />
+      <Summarization summarization={summarization} />
+      <RefinedText summarization={summarization} />
+      <Transcription transcription={transcription} />
     </Stack>
   );
 };
