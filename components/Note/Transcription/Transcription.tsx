@@ -22,12 +22,16 @@ const Transcription: React.FC<Props> = ({ transcription, className }) => {
     >
       <Group gap="xs">
         <IconBubbleText
-          stroke={1}
           size={24}
           color="var(--mantine-color-gray-9)"
         />
 
-        <Text size="xl">Транскрипция</Text>
+        <Text
+          size="xl"
+          fw="bold"
+        >
+          Транскрипция
+        </Text>
       </Group>
 
       {segments.map((s, idx) => (

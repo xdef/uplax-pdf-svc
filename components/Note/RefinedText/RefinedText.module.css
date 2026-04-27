@@ -1,0 +1,8 @@
+.root {}
+
+.body {
+  h2, h3, h4 {
+    font-size: var(--mantine-font-size-lg);
+    font-weight: 500;
+  }
+}

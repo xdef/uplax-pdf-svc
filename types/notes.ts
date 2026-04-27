@@ -26,7 +26,16 @@ export interface INote {
 
 export interface INoteTranscription {
   attachment_id: string;
+  audio_info: IAudioInfo;
   segments: INoteTranscriptionSegment[];
+}
+
+export interface IAudioInfo {
+  duration: number;
+  original_sample_rate: number;
+  original_channels: number;
+  original_codec: string;
+  original_format: string;
 }
 
 export interface INoteTranscriptionSegment {
@@ -40,6 +49,7 @@ export interface INoteSummarization {
   attachment_id: string;
   title: string;
   details: string;
+  refined_text: string;
   topics: {
     title: string;
     details: string;
